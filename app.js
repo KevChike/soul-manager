@@ -19,6 +19,6 @@ db.connect(err => {
 	});
 });
 
-require("./routes/migration")(app);
+require("./routes/console")(app);
 require("./routes/api")(app);
 require("./routes/web")(app);
