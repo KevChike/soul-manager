@@ -21,13 +21,24 @@ module.exports = {
 				created_at timestamp NULL,
   			updated_at timestamp NULL,
 				PRIMARY KEY (id),
-				KEY churches_church_id_foreign (church_id),
+				KEY new_members_church_id_foreign (church_id),
 				UNIQUE KEY (uid))`;
 
 		db.query(sql, (err, result) => {
 			if (err) throw err;
 
 			console.log("new members table created!");
+		});
+	},
+	alter() {
+		let sql = `ALTER TABLE new_members
+  			ADD CONSTRAINT new_members_church_id_foreign FOREIGN KEY (church_id) 
+				REFERENCES churches (uid) ON DELETE CASCADE ON UPDATE CASCADE`;
+
+		db.query(sql, (err, result) => {
+			if (err) throw err;
+
+			console.log("added constraint to new members table!");
 		});
 	}
 };

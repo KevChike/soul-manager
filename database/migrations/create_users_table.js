@@ -25,5 +25,18 @@ module.exports = {
 
 			console.log("users table created!");
 		});
+	},
+	alter() {
+		let sql = `ALTER TABLE users
+  			ADD CONSTRAINT churches_church_id_foreign FOREIGN KEY (church_id) 
+				REFERENCES churches (uid) ON DELETE CASCADE ON UPDATE CASCADE,
+				ADD CONSTRAINT churches_role_id_foreign FOREIGN KEY (role_id) 
+				REFERENCES roles (uid) ON DELETE CASCADE ON UPDATE CASCADE`;
+
+		db.query(sql, (err, result) => {
+			if (err) throw err;
+
+			console.log("added constraint to users table!");
+		});
 	}
 };

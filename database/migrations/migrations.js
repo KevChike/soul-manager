@@ -10,6 +10,10 @@ module.exports = {
 		users.up();
 		newMembers.up();
 
+		//Create contraints on tables
+		users.alter();
+		newMembers.alter();
+
 		res.status(200).send("Database migration completed!");
 	}
 };
