@@ -8,8 +8,8 @@ module.exports = {
 	store(req, res) {
 		User.attributes = { ...req.body };
 		User.attributes.uid = new Date().getTime();
-		User.attributes.created_at = new Date().getTime();
-		User.attributes.updated_at = new Date().getTime();
+		User.attributes.created_at = date.format("YYYY-MM-DD HH:mm:ss");
+		User.attributes.updated_at = date.format("YYYY-MM-DD HH:mm:ss");
 
 		let sql = "INSERT INTO " + User.tableName + " SET ?";
 
@@ -26,13 +26,13 @@ module.exports = {
 						lga: req.body.lga,
 						state: req.body.state,
 						country: req.body.country,
-						resident_pastor: req.body.resident_pastor
+						resident_pastor: req.body.resident_pastor,
+						uid: "129287yuehej",
+						created_at: date.format("YYYY-MM-DD HH:mm:ss"),
+						updated_at: date.format("YYYY-MM-DD HH:mm:ss")
 					}
 				]
 			});
 		});
-	},
-	test() {
-		console.log(date.toDate());
 	}
 };

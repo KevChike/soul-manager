@@ -11,7 +11,6 @@ module.exports = app => {
 
 	//Churches
 	app.post(prefix + "/church", ChurchController.store);
-	app.get(prefix + "/test", ChurchController.test);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {

@@ -3,7 +3,7 @@ const db = require("../connection");
 module.exports = {
 	create() {
 		let sql = `CREATE TABLE churches(
-				id int(10) UNSIGNED NOT NULL, 
+				id int(10) UNSIGNED NOT NULL AUTO_INCREMENT, 
 				uid varchar(255) COLLATE utf8_unicode_ci NOT NULL, 
 				name varchar(255) COLLATE utf8_unicode_ci NOT NULL, 
 				phone varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
