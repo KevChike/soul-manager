@@ -5,6 +5,7 @@ const newMembers = require("./create_new_members_table");
 
 module.exports = {
 	run(req, res) {
+		//Create tables
 		churches.create();
 		roles.create();
 		users.create();
