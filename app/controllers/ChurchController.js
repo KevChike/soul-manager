@@ -1,5 +1,8 @@
 const db = require("../../database/connection");
 const User = require("../models/Church");
+const moment = require("moment");
+
+let date = moment();
 
 module.exports = {
 	store(req, res) {
@@ -28,5 +31,8 @@ module.exports = {
 				]
 			});
 		});
+	},
+	test() {
+		console.log(date.toDate());
 	}
 };
