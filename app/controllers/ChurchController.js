@@ -17,21 +17,7 @@ module.exports = {
 			if (err) throw err;
 
 			res.status(200).json({
-				data: [
-					{
-						name: req.body.name,
-						phone: req.body.phone,
-						address: req.body.address,
-						town: req.body.town,
-						lga: req.body.lga,
-						state: req.body.state,
-						country: req.body.country,
-						resident_pastor: req.body.resident_pastor,
-						uid: "129287yuehej",
-						created_at: date.format("YYYY-MM-DD HH:mm:ss"),
-						updated_at: date.format("YYYY-MM-DD HH:mm:ss")
-					}
-				]
+				data: [User.attributes]
 			});
 		});
 	}
