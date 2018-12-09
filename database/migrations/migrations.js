@@ -5,10 +5,10 @@ const newMembers = require("./create_new_members_table");
 
 module.exports = {
 	run(req, res) {
-		churches.up();
-		roles.up();
-		users.up();
-		newMembers.up();
+		churches.create();
+		roles.create();
+		users.create();
+		newMembers.create();
 
 		//Create contraints on tables
 		users.alter();

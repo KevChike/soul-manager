@@ -1,7 +1,7 @@
 const db = require("../connection");
 
 module.exports = {
-	up() {
+	create() {
 		let sql = `CREATE TABLE new_members(
 				id int(10) UNSIGNED NOT NULL, 
 				uid varchar(255) COLLATE utf8_unicode_ci NOT NULL, 
