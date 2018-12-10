@@ -13,6 +13,7 @@ module.exports = app => {
 	app.post(prefix + "/churches", ChurchController.store);
 	app.get(prefix + "/churches", ChurchController.all);
 	app.get(prefix + "/churches/:uid", ChurchController.single);
+	app.patch(prefix + "/churches/:uid", ChurchController.update);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {

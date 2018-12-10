@@ -54,5 +54,35 @@ module.exports = {
 				});
 			}
 		});
+	},
+
+	update(req, res) {
+		let data = req.body;
+
+		User.attributes = { ...data };
+		delete User.attributes.uid;
+		delete User.attributes.created_at;
+		User.attributes.updated_at = date.format("YYYY-MM-DD HH:mm:ss");
+
+		let sql = `UPDATE ${User.tableName} SET ? WHERE uid = ${req.params.uid}`;
+		db.query(sql, User.attributes, (err, result) => {
+			try {
+				if (err) throw err;
+
+				if (result.affectedRows > 0) {
+					res.status(200).json({
+						data: [User.attributes]
+					});
+				} else {
+					res.status(404).json({
+						error: "Record not found"
+					});
+				}
+			} catch (error) {
+				res.json({
+					error: "Something went wrong!"
+				});
+			}
+		});
 	}
 };
