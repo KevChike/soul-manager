@@ -14,6 +14,7 @@ module.exports = app => {
 	app.get(prefix + "/churches", ChurchController.all);
 	app.get(prefix + "/churches/:uid", ChurchController.single);
 	app.patch(prefix + "/churches/:uid", ChurchController.update);
+	app.delete(prefix + "/churches/:uid", ChurchController.delete);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {
