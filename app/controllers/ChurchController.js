@@ -11,7 +11,7 @@ module.exports = {
 		User.attributes.created_at = date.format("YYYY-MM-DD HH:mm:ss");
 		User.attributes.updated_at = date.format("YYYY-MM-DD HH:mm:ss");
 
-		let sql = "INSERT INTO " + User.tableName + " SET ?";
+		let sql = `INSERT INTO ${User.tableName} SET ?`;
 
 		db.query(sql, User.attributes, (err, result) => {
 			if (err) throw err;
@@ -23,7 +23,7 @@ module.exports = {
 	},
 
 	all(req, res) {
-		let sql = "SELECT * FROM " + User.tableName;
+		let sql = `SELECT * FROM ${User.tableName}`;
 		db.query(sql, (err, results) => {
 			if (err) throw err;
 
@@ -35,6 +35,24 @@ module.exports = {
 			res.status(200).json({
 				data: results
 			});
+		});
+	},
+
+	single(req, res) {
+		let sql = `SELECT * FROM ${User.tableName} WHERE uid = ${req.params.uid}`;
+		db.query(sql, (err, result) => {
+			try {
+				if (err) throw err;
+
+				delete result[0].id;
+				res.status(200).json({
+					data: result
+				});
+			} catch (error) {
+				res.status(404).json({
+					error: "Record not found"
+				});
+			}
 		});
 	}
 };

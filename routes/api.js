@@ -12,11 +12,12 @@ module.exports = app => {
 	//Churches
 	app.post(prefix + "/churches", ChurchController.store);
 	app.get(prefix + "/churches", ChurchController.all);
+	app.get(prefix + "/churches/:uid", ChurchController.single);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {
 		res.status(404).json({
-			message: "Not found!"
+			error: "Endpoint not found!"
 		});
 	});
 };
