@@ -10,7 +10,7 @@ module.exports = app => {
 	app.post(prefix + "/user", UserController.store);
 
 	//Churches
-	app.post(prefix + "/church", ChurchController.store);
+	app.post(prefix + "/churches", ChurchController.store);
 	app.get(prefix + "/churches", ChurchController.all);
 
 	// Handle 404 error
