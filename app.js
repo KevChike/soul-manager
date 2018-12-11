@@ -1,10 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const config = require("./config/app");
 const db = require("./database/connection");
 
 const app = express();
+app.use(morgan("combined"));
 app.use(bodyParser.json());
 
 // Attempt connecting to database
