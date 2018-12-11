@@ -20,6 +20,7 @@ module.exports = app => {
 	//Roles
 	app.post(prefix + "/roles", RoleController.store);
 	app.get(prefix + "/roles", RoleController.all);
+	app.get(prefix + "/roles/:uid", RoleController.single);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {

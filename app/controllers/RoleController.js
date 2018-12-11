@@ -36,5 +36,23 @@ module.exports = {
 				data: results
 			});
 		});
+	},
+
+	single(req, res) {
+		let sql = `SELECT * FROM ${Role.tableName} WHERE uid = ${req.params.uid}`;
+		db.query(sql, (err, result) => {
+			try {
+				if (err) throw err;
+
+				delete result[0].id;
+				res.status(200).json({
+					data: result
+				});
+			} catch (error) {
+				res.status(404).json({
+					error: "Record not found"
+				});
+			}
+		});
 	}
 };
