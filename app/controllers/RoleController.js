@@ -84,5 +84,20 @@ module.exports = {
 				});
 			}
 		});
+	},
+
+	delete(req, res) {
+		let sql = `DELETE FROM ${Role.tableName} WHERE uid = ${req.params.uid}`;
+		db.query(sql, (err, result) => {
+			if (result.affectedRows > 0) {
+				res.status(200).json({
+					message: "Record deleted!"
+				});
+			} else {
+				res.status(404).json({
+					error: "Record not found"
+				});
+			}
+		});
 	}
 };
