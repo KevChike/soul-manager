@@ -1,5 +1,5 @@
 module.exports = {
-	tableName: "users",
+	tableName: "roles",
 	attributes: {
 		uid: "",
 		name: "",
