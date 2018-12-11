@@ -20,5 +20,21 @@ module.exports = {
 				data: [Role.attributes]
 			});
 		});
+	},
+
+	all(req, res) {
+		let sql = `SELECT * FROM ${Role.tableName}`;
+		db.query(sql, (err, results) => {
+			if (err) throw err;
+
+			results.map(function(items) {
+				delete items.id;
+				return items;
+			});
+
+			res.status(200).json({
+				data: results
+			});
+		});
 	}
 };
