@@ -54,5 +54,35 @@ module.exports = {
 				});
 			}
 		});
+	},
+
+	update(req, res) {
+		let data = req.body;
+
+		Role.attributes = { ...data };
+		delete Role.attributes.uid;
+		delete Role.attributes.created_at;
+		Role.attributes.updated_at = date.format("YYYY-MM-DD HH:mm:ss");
+
+		let sql = `UPDATE ${Role.tableName} SET ? WHERE uid = ${req.params.uid}`;
+		db.query(sql, Role.attributes, (err, result) => {
+			try {
+				if (err) throw err;
+
+				if (result.affectedRows > 0) {
+					res.status(200).json({
+						data: [Role.attributes]
+					});
+				} else {
+					res.status(404).json({
+						error: "Record not found"
+					});
+				}
+			} catch (error) {
+				res.json({
+					error: "Something went wrong!"
+				});
+			}
+		});
 	}
 };
