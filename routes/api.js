@@ -26,6 +26,7 @@ module.exports = app => {
 	app.post(prefix + "/users", UserController.store);
 	app.get(prefix + "/users", UserController.all);
 	app.get(prefix + "/users/:uid", UserController.single);
+	app.patch(prefix + "/users/:uid", UserController.update);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {
