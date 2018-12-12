@@ -4,20 +4,17 @@ const User = require("../models/User");
 module.exports = {
 	store(req, res) {
 		User.attributes = { ...req.body };
-		User.attributes.password = new Date().getTime();
+		User.attributes.uid = new Date().getTime();
+		User.attributes.created_at = date.format("YYYY-MM-DD HH:mm:ss");
+		User.attributes.updated_at = date.format("YYYY-MM-DD HH:mm:ss");
 
-		let sql = "INSERT INTO " + User.tableName + " SET ?";
+		let sql = `INSERT INTO ${User.tableName} SET ?`;
 
 		db.query(sql, User.attributes, (err, result) => {
 			if (err) throw err;
 
 			res.status(200).json({
-				data: [
-					{
-						name: req.body.name,
-						email: req.body.email
-					}
-				]
+				data: [User.attributes]
 			});
 		});
 	}
