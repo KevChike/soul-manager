@@ -20,5 +20,22 @@ module.exports = {
 				data: [User.attributes]
 			});
 		});
+	},
+
+	all(req, res) {
+		let sql = `SELECT * FROM ${User.tableName}`;
+		db.query(sql, (err, results) => {
+			if (err) throw err;
+
+			results.map(function(items) {
+				delete items.password;
+				delete items.id;
+				return items;
+			});
+
+			res.status(200).json({
+				data: results
+			});
+		});
 	}
 };
