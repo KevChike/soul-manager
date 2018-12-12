@@ -1,5 +1,8 @@
 const db = require("../../database/connection");
 const User = require("../models/User");
+const moment = require("moment");
+
+let date = moment();
 
 module.exports = {
 	store(req, res) {

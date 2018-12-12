@@ -1,14 +1,12 @@
 const WelcomeController = require("../app/controllers/WelcomeController");
-const UserController = require("../app/controllers/UserController");
 const ChurchController = require("../app/controllers/ChurchController");
 const RoleController = require("../app/controllers/RoleController");
+const UserController = require("../app/controllers/UserController");
 const prefix = "/api/v1";
 
 module.exports = app => {
 	app.get(prefix + "/", WelcomeController.home);
 	app.get(prefix + "/status", WelcomeController.status);
-
-	app.post(prefix + "/user", UserController.store);
 
 	//Churches
 	app.post(prefix + "/churches", ChurchController.store);
@@ -23,6 +21,9 @@ module.exports = app => {
 	app.get(prefix + "/roles/:uid", RoleController.single);
 	app.patch(prefix + "/roles/:uid", RoleController.update);
 	app.delete(prefix + "/roles/:uid", RoleController.delete);
+
+	// Users
+	app.post(prefix + "/users", UserController.store);
 
 	// Handle 404 error
 	app.get(prefix + "*", (req, res) => {
